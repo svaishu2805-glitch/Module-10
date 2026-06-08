@@ -1,85 +1,54 @@
-# 🔄 Types of Queue-Circular Queue in Python
+# # Stack-Stack Reversal Program 🔁
 
-This project demonstrates the implementation of a **Circular Queue** in Python. The queue accepts 3 user values, performs enqueue and dequeue operations, and displays the removed values.
-
----
+This Python program demonstrates how to reverse the values in a stack using basic stack operations like push and pop.
 
 ## 🎯 Aim
 
-To develop a Python program that implements a Circular Queue:
-- Accepts 3 values from the user
-- Removes the 3 values from the queue
-- Displays the removed values
+To write a Python program that reverses the values in a stack using standard stack operations.
 
----
+## 📋 Algorithm
 
-## 🧠 Algorithm
+1. Create an empty stack.
+2. Read an integer `n` from the user (number of elements to push).
+3. Loop `n` times:
+   - Read an integer from the user.
+   - Push it onto the stack.
+4. Create an empty list called `reverse`.
+5. While the stack is not empty:
+   - Pop the top element.
+   - Append it to `reverse`.
+6. Print the reversed list.
 
-1. **Initialize** a circular queue of fixed size (e.g., 5).
-2. **Define the following functions**:
-   - `enqueue()`: Inserts an element into the queue.
-   - `dequeue()`: Removes an element from the queue.
-   - `display()`: Shows the queue contents.
-3. Accept 3 values from the user using the `enqueue()` method.
-4. Remove 3 values using the `dequeue()` method.
-5. Print the removed values.
 
----
-
-## 💻 Program:
+### Program:
 ```
-class MyCircularQueue():
-    def __init__(self, k):
-        self.k = k
-        self.queue = [None] * k
-        self.head = self.tail = -1
-    def enqueue(self, data):
-        if ((self.tail + 1) % self.k == self.head):
-            print("The circular queue is full\n")
-        elif (self.head == -1):
-            self.head = 0
-            self.tail = 0
-            self.queue[self.tail] = data
-        else:
-            self.tail = (self.tail + 1) % self.k
-            self.queue[self.tail] = data
-    def dequeue(self):
-        if (self.head == -1):
-            print("The circular queue is empty\n")
-        elif (self.head == self.tail):
-            temp = self.queue[self.head]
-            self.head = -1
-            self.tail = -1
-            return temp
-        else:
-            temp = self.queue[self.head]
-            self.head = (self.head + 1) % self.k
-            return temp
-    def printCQueue(self):
-        if(self.head == -1):
-            print("No element in the circular queue")
-        elif (self.tail >= self.head):
-            for i in range(self.head, self.tail + 1):
-                print(self.queue[i], end=" ")
-            print()
-        else:
-            for i in range(self.head, self.k):
-                print(self.queue[i], end=" ")
-            for i in range(0, self.tail + 1):
-                print(self.queue[i], end=" ")
-            print()
-obj = MyCircularQueue(5)
-for i in range(5):
-    obj.enqueue(int(input()))
-obj.dequeue()
-obj.dequeue()
-obj.dequeue()
+def insertAtBottom(s, item):
+    if not s:
+        s.append(item)
+        return
+    top = s.pop()
+    insertAtBottom(s, item)
+    s.append(top)
 
-obj.printCQueue()
+def reverseStack(s):
+ 
+    if not s:
+        return
+ 
+    item = s.pop()
+    reverseStack(s)
+ 
+    insertAtBottom(s, item)
+    return s
+l=[]
+n=int(input())
+for i in range(n):
+    l.append(int(input()))
+print(reverseStack(l))
 ```
 
-### Output:
-<img width="334" height="344" alt="image" src="https://github.com/user-attachments/assets/486798c8-3ebd-44da-b822-067452feda64" />
+## 🧪 Sample Input and Output
+<img width="513" height="277" alt="image" src="https://github.com/user-attachments/assets/f8ec8d8f-7a46-40b3-82ea-9cc0a087c2b4" />
 
-## Result:
+## Result
 Thus,the program is executed successfully
